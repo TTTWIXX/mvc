@@ -43,7 +43,6 @@ public class ControllerV2 {
         String name = "짹짹이";
         List<String> hList
                 = List.of("전깃줄에서 졸기", "조잘대기");
-
         // 포워딩할 뷰의 이름
         String viewName = "chap02/hobbies";
 

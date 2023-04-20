@@ -9,10 +9,9 @@
 </head>
 
 <body>
-    <form action="/pos/check">
+    <form action="/pos/check" method="get">
         <div>나이 입력<input type="text" name="age"></div>
-        <div></div>
-
+    <button type="submit">확인</button>
     </form>
 
 
