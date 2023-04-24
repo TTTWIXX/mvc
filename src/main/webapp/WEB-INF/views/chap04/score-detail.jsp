@@ -47,19 +47,19 @@
 
 <body>
     <div class="head" >
-        <h1 id="title">${score.name} 님 성적 정보</h1>
+        <h1 id="title">${s.name} 님 성적 정보</h1>
         <div class="main">
-        <div># 국어 : ${score.kor}</div>
-        <div># 영어 : ${score.eng}</div>
-        <div># 수학 : ${score.math}</div>
-        <div># 총점 : ${score.total}</div>
-        <div># 평균 : ${score.average}</div>
-        <div># 학점 : ${score.grade}</div>
+        <div># 국어 : ${s.kor}</div>
+        <div># 영어 : ${s.eng}</div>
+        <div># 수학 : ${s.math}</div>
+        <div># 총점 : ${s.total}</div>
+        <div># 평균 : ${s.average}</div>
+        <div># 학점 : ${s.grade}</div>
 
     </div>
         <div class="foot">
             <a href="/score/list" id="list">목록</a>
-            <a href="/score/updateShow?score=${score}" id="update">수정</a>
+            <a href="/score/modify/?stuNum=${s.stuNum}" id="update">수정</a>
         </div>
     </div>
 </body>

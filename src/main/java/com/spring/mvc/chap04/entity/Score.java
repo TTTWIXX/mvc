@@ -3,15 +3,14 @@ package com.spring.mvc.chap04.entity;
 import com.spring.mvc.chap04.dto.ScoreRequestDTO;
 import lombok.*;
 
-@Setter
-@Getter
-@ToString
-@EqualsAndHashCode
+@Setter @Getter
+@ToString @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class Score {
+
     private String name; // 학생 이름
-    private int kor, eng, math; // 국,영,수 점수
+    private int kor, eng, math; // 국, 영, 수 점수
 
     private int stuNum; // 학번
     private int total; // 총점
@@ -20,26 +19,25 @@ public class Score {
 
     public Score(ScoreRequestDTO dto) {
         this.name = dto.getName();
+        changeScore(dto);
+    }
+
+    public void changeScore(ScoreRequestDTO dto) {
         this.kor = dto.getKor();
         this.eng = dto.getEng();
         this.math = dto.getMath();
-        calcTotalAndAvg(); // 총좀, 평균 계산
+        calcTotalAndAvg(); // 총점, 평균 계산
         calcGrade(); // 학점 계산
-
-
     }
 
     private void calcGrade() {
         if (average >= 90) {
             this.grade = Grade.A;
-        }
-        else if (average >= 80) {
+        } else if (average >= 80) {
             this.grade = Grade.B;
-        }
-        else if (average >= 70) {
+        } else if (average >= 70) {
             this.grade = Grade.C;
-        }
-        else if (average >= 60) {
+        } else if (average >= 60) {
             this.grade = Grade.D;
         } else {
             this.grade = Grade.F;
@@ -47,7 +45,7 @@ public class Score {
     }
 
     private void calcTotalAndAvg() {
-        this.total = math + kor + eng;
-        this.average = Math.round( total / 3.00);
+        this.total = kor + eng + math;
+        this.average = total / 3.0;
     }
 }

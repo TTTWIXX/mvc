@@ -1,24 +1,20 @@
 package com.spring.mvc.chap04.repository;
 
-
 import com.spring.mvc.chap04.entity.Score;
 
 import java.util.List;
 
-// 역할 명세(추상화):
+// 역할 명세 (추상화):
 // 성적 정보를 잘 저장하고 조회하고 삭제하고 수정해야 한다.
 // 그래서 어디에 저장하는 건데?
 // 어디에서 조회하니? 어디에서 삭제하니?
 public interface ScoreRepository {
 
     // 성적 정보 전체 목록 조회
-    List<Score> findAll();
-
-    // 정렬 목록조회(오버라이딩이 강제되지 않는다.)
-    // 실무에서 나중에 인터페이스에 추가됬을 경우
-    default List<Score> findAll(String sort){
-        return  null;
-    }
+    List<Score> findAll(); // 일반 목록조회
+    default List<Score> findAll(String sort) {
+        return null;
+    } // 정렬 목록조회
 
     // 성적 정보 등록
     boolean save(Score score);
@@ -28,7 +24,6 @@ public interface ScoreRepository {
 
     // 성적 정보 개별 조회
     Score findByStuNum(int stuNum);
-
 
 
 }

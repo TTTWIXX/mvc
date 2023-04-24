@@ -105,7 +105,7 @@
 
             <ul class="score-list">
                 <li class="list-header">
-                    <div class="count">총 학생 수: ${sList.size()}명</div>
+                    <div class="count">총 학생 수: ${bList.size()}명</div>
                     <div class="sort-link-group">
                         <div><a href="/score/list">학번순</a></div>
                         <div><a href="/score/sortName">이름순</a></div>
@@ -113,8 +113,7 @@
                     </div>
 
                 </li>
-
-                <c:forEach var="s" items="${sList}">
+                <c:forEach var="S" items="bList">
                     <li>
                         # 학번: ${s.stuNum}, 이름: <a href="/score/showDetail?stuNum=${s.stuNum}">${s.name}</a>,
                         국어: ${s.kor}점,
@@ -132,9 +131,6 @@
     </div>
 
     <script>
-        
-
-
         // const $ul = document.querySelector('.score-list');
 
         // $ul.addEventListener('click', e => {
