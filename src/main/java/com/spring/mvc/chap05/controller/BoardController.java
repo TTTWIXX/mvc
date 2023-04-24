@@ -2,7 +2,6 @@ package com.spring.mvc.chap05.controller;
 
 import com.spring.mvc.chap05.dto.BoardListResponseDTO;
 import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
-import com.spring.mvc.chap05.entity.Board;
 import com.spring.mvc.chap05.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,24 +21,39 @@ public class BoardController {
 
     // 목록 조회 요청
     @GetMapping("/list")
-    public String showList(Model model){
-        System.out.println("/list/board");
-        List<Board> boardList = boardService.showAll();
-        System.out.println(boardService.showAll());
-        model.addAttribute("bList",boardList);
-        return "/chap05/list";
+    public String list(Model model) {
+        List<BoardListResponseDTO> list = boardService.getList();
+        model.addAttribute("bList",list);
+        return "chap05/list";
     }
 
-
-
     // 글쓰기 화면 조회 요청
+    @GetMapping("/write")
+    public String write() {
 
+        return "chap05/write";
+    }
 
     // 글 등록 요청 처리
+    @PostMapping("/write")
+    public String write(BoardWriteRequestDTO dto) {
+        boardService.addList(dto);
+
+        return "redirect:/board/list";
+    }
 
     // 글 삭제 요청 처리
+    @GetMapping("/delete")
+    public String delete(int bno) {
+
+        return "redirect:/board/list";
+    }
 
     // 글 상세 조회 요청
+    @GetMapping("/detail")
+    public String detail(int bno, Model model) {
 
+        return "chap05/detail";
+    }
 
 }

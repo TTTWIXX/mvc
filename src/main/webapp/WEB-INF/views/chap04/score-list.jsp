@@ -64,14 +64,15 @@
 
             width: 50%;
         }
+
         .list-header .sort-link-group {
             display: flex;
 
         }
+
         .list-header .sort-link-group div {
             margin-right: 20px;
         }
-
     </style>
 </head>
 
@@ -104,23 +105,23 @@
 
             <ul class="score-list">
                 <li class="list-header">
-                    <div class="count">총 학생 수: ${sList.size()}명</div>
+                    <div class="count">총 학생 수: ${bList.size()}명</div>
                     <div class="sort-link-group">
-                        <div><a href="/score/list?sort=num">학번순</a></div>
-                        <div><a href="/score/list?sort=name">이름순</a></div>
-                        <div><a href="/score/list?sort=avg">평균순</a></div>
+                        <div><a href="/score/list">학번순</a></div>
+                        <div><a href="/score/sortName">이름순</a></div>
+                        <div><a href="/score/sortAverage">평균순</a></div>
                     </div>
 
                 </li>
-
-                <c:forEach var="s" items="${sList}">
+                <c:forEach var="S" items="bList">
                     <li>
-                        # 학번: ${s.stuNum}, 이름: <a href="/score/detail?stuNum=${s.stuNum}">${s.maskingName}</a>, 
-                        평균: ${s.average}점, 학점: ${s.grade}
+                        # 학번: ${s.stuNum}, 이름: <a href="/score/showDetail?stuNum=${s.stuNum}">${s.name}</a>,
+                        국어: ${s.kor}점,
+                        영어: ${s.eng}점, 수학: ${s.math}점, 총점: ${s.total}점
+                        , 평균: ${s.average}점, 학점: ${s.grade}
                         <a class="del-btn" href="/score/remove?stuNum=${s.stuNum}">삭제</a>
                     </li>
                 </c:forEach>
-                
             </ul>
 
         </section>
@@ -130,27 +131,28 @@
     </div>
 
     <script>
-        const $ul = document.querySelector('.score-list');
+        // const $ul = document.querySelector('.score-list');
 
-        $ul.addEventListener('click', e => {
-            if (!e.target.matches('a.del-btn')) return;
+        // $ul.addEventListener('click', e => {
+        //     if (!e.target.matches('a.del-btn')) return;
 
-            e.preventDefault(); // a태그 기본기능 정지
-            //console.log('클릭이벤트 발동!');
+        //     e.preventDefault(); // a태그 기본기능(링크 이동 기능) 정지
+        //     //console.log('클릭이벤트 발동!');
 
-            if (confirm('정말로 삭제하시겠습니까?')) {
-                //삭제 진행
-                window.location.href = e.target.getAttribute('href');
-            } else {
-                //삭제 취소
-                return;
-            }
-        });
+        //     if (confirm('정말로 삭제하시겠습니까?')) {
+        //         //삭제 진행
+        //         window.location.href = e.target.getAttribute('href');
+        //     } else {
+        //         //삭제 취소
+        //         return;
+        //     }
+
+        // });
 
         //홈화면으로 버튼 이벤트
         const $homeBtn = document.getElementById('go-home');
         $homeBtn.onclick = e => {
-            window.location.href = '/'; // GET요청
+            window.location.href = '/';
         };
     </script>
 

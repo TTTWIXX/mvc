@@ -32,9 +32,7 @@ public class LoginController {
     @PostMapping("/s-val")
     public String loginValidate(String id, String pw, Model model) {
 
-        System.out.println("로그인 검증");
-        System.out.println("id = " + id);
-        System.out.println("pw = " + pw);
+
         String result=null;
         if (id.equals("grape111") && pw.equals("ggg999")) {
            result="로그인 성공";

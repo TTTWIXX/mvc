@@ -20,12 +20,19 @@ public class BoardService {
 
     // 중간처리 기능 자유롭게 사용
     // 목록 중간처리
+    public List<BoardListResponseDTO> getList() {
+
+
+        return boardRepository.findAll().stream().map(d -> new BoardListResponseDTO(d)).collect(toList());
+    }
 
 
     // 글 등록 중간처리
-    public List<Board> showAll(){
+    public void addList(BoardWriteRequestDTO dto) {
+        Board board=new Board(dto);
+        boardRepository.save(board);
 
-        return boardRepository.findAll();
+
     }
 
 

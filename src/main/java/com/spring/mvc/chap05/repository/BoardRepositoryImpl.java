@@ -29,25 +29,27 @@ public class BoardRepositoryImpl
 
     @Override
     public List<Board> findAll() {
-
-        return   boardMap.values().stream().collect(toList());
+        return boardMap.values()
+                .stream()
+                .sorted(comparing(Board::getBoardNo).reversed())
+                .collect(toList());
     }
 
     @Override
     public Board findOne(int boardNo) {
-        return null;
+        return boardMap.get(boardNo);
     }
 
     @Override
     public boolean save(Board board) {
         board.setBoardNo(++sequence);
         boardMap.put(board.getBoardNo(), board);
-        return false;
+        return true;
     }
 
     @Override
     public boolean deleteByNo(int boardNo) {
         boardMap.remove(boardNo);
-        return false;
+        return true;
     }
 }
