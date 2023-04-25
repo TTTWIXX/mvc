@@ -32,7 +32,8 @@ public class BoardRepositoryImpl
         return boardMap.values()
                 .stream()
                 .sorted(comparing(Board::getBoardNo).reversed())
-                .collect(toList());
+                .collect(toList())
+                ;
     }
 
     @Override
