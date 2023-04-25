@@ -1,5 +1,6 @@
 package com.spring.mvc.test_spring.Entity;
 
+import com.spring.mvc.test_spring.dto.TestRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,4 +24,11 @@ public class TestBoard {
         this.content = content;
         this.regDateTime = regDateTime;
     }
+
+    public TestBoard(TestRequestDTO dto){
+        this.title=dto.getTitle();
+        this.content=dto.getContent();
+    }
+
+
 }

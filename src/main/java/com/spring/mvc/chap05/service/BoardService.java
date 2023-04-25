@@ -22,17 +22,28 @@ public class BoardService {
     // 목록 중간처리
     public List<BoardListResponseDTO> getList() {
 
-
-        return boardRepository.findAll().stream().map(d -> new BoardListResponseDTO(d)).collect(toList());
+        return boardRepository.findAll()
+                .stream()
+                .map(BoardListResponseDTO::new)
+                .collect(toList())
+                ;
     }
-
 
     // 글 등록 중간처리
-    public void addList(BoardWriteRequestDTO dto) {
-        Board board=new Board(dto);
-        boardRepository.save(board);
-
+    public boolean register(BoardWriteRequestDTO dto) {
+        return boardRepository.save(new Board(dto));
     }
 
+    public boolean delete(int bno) {
+        return boardRepository.deleteByNo(bno);
+    }
 
+    public BoardDetailResponseDTO getDetail(int bno) {
+
+        Board board = boardRepository.findOne(bno);
+        // 조회수 상승 처리
+        board.setViewCount(board.getViewCount() + 1);
+
+        return new BoardDetailResponseDTO(board);
+    }
 }

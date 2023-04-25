@@ -22,37 +22,41 @@ public class BoardController {
     // 목록 조회 요청
     @GetMapping("/list")
     public String list(Model model) {
-        List<BoardListResponseDTO> list = boardService.getList();
-        model.addAttribute("bList",list);
+        System.out.println("/board/list : GET");
+        List<BoardListResponseDTO> responseDTOS
+                = boardService.getList();
+        model.addAttribute("bList", responseDTOS);
         return "chap05/list";
     }
 
     // 글쓰기 화면 조회 요청
     @GetMapping("/write")
     public String write() {
-
+        System.out.println("/board/write : GET");
         return "chap05/write";
     }
 
     // 글 등록 요청 처리
     @PostMapping("/write")
     public String write(BoardWriteRequestDTO dto) {
-        boardService.addList(dto);
-
+        System.out.println("/board/write : POST");
+        boardService.register(dto);
         return "redirect:/board/list";
     }
 
     // 글 삭제 요청 처리
     @GetMapping("/delete")
     public String delete(int bno) {
-
+        System.out.println("/board/delete : GET");
+        boardService.delete(bno);
         return "redirect:/board/list";
     }
 
     // 글 상세 조회 요청
     @GetMapping("/detail")
     public String detail(int bno, Model model) {
-
+        System.out.println("/board/detail : GET");
+        model.addAttribute("b", boardService.getDetail(bno));
         return "chap05/detail";
     }
 

@@ -1,7 +1,9 @@
 package com.spring.mvc.test_spring.service;
 
+import com.spring.mvc.test_spring.Entity.TestBoard;
 import com.spring.mvc.test_spring.Repository.TestBoardRepository;
 import com.spring.mvc.test_spring.dto.TestBoardListResponseDTO;
+import com.spring.mvc.test_spring.dto.TestRequestDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +22,12 @@ public class TestService {
                 .map(d -> new TestBoardListResponseDTO(d))
                 .collect(Collectors.toList());
     }
+
+
+    public boolean addNewPage(TestRequestDTO dto){
+
+       return testRepository.save(new TestBoard(dto));
+    }
+
+
 }
