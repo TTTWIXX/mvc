@@ -1,6 +1,6 @@
-package com.spring.mvc.test04.repository;
+package com.spring.mvc.chap04.repository;
+import com.spring.mvc.chap04.entity.Score;
 
-import com.spring.mvc.test04.entity.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

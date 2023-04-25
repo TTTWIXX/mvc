@@ -32,7 +32,6 @@ public class BoardService {
         Board board=new Board(dto);
         boardRepository.save(board);
 
-
     }
 
 

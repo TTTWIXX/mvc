@@ -33,25 +33,26 @@
 
         <div class="card-container">
 
-            <c:forEach var="b" items="${cList}">
+  
+            <c:forEach var="s" items="sList">
                 <div class="card-wrapper">
-                    <section class="card" data-bno="${b.boardNo}">
+                    <section class="card" data-bno="${s.boardNo}">
                         <div class="card-title-wrapper">
-                            <h2 class="card-title">${b.title}</h2>
+                            <h2 class="card-title">${s.title}</h2>
                             <div class="time-view-wrapper">
                                 <div class="time">
                                     <i class="far fa-clock"></i>
-                                    ${b.regDateTime}</div>
+                                    ${s.regDateTime}</div>
                                 <div class="view">
                                     <i class="fas fa-eye"></i>
-                                    <span class="view-count">${b.viewCount}</span>
+                                    <span class="view-count">${s.viewCount}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="card-content">
-                            
-                            ${b.content}
-                            
+
+                            ${s.content}
+
                         </div>
                     </section>
                     <div class="card-btn-group">
@@ -81,14 +82,13 @@
 
 
     <script>
-
         const $cardContainer = document.querySelector('.card-container');
 
         //================= 삭제버튼 스크립트 =================//
         const modal = document.getElementById('modal'); // 모달창 얻기
         const confirmDelete = document.getElementById('confirmDelete'); // 모달 삭제 확인버튼
         const cancelDelete = document.getElementById('cancelDelete'); // 모달 삭제 취소 버튼
-    
+
         $cardContainer.addEventListener('click', e => {
             // 삭제 버튼을 눌렀다면~
             if (e.target.matches('.card-btn-group *')) {
@@ -116,7 +116,7 @@
                 // section태그에 붙은 글번호 읽기
                 const bno = e.target.closest('section.card').dataset.bno;
                 // 요청 보내기
-                window.location.href= '/board/detail?bno=' + bno;
+                window.location.href = '/board/detail?bno=' + bno;
             }
         });
 
@@ -132,28 +132,28 @@
         function removeDown(e) {
             if (!e.target.matches('.card-container *')) return;
             const $targetCard = e.target.closest('.card-wrapper');
-            $targetCard?.removeAttribute('id', 'card-down');
+            $targetCard ? .removeAttribute('id', 'card-down');
         }
 
         function removeHover(e) {
             if (!e.target.matches('.card-container *')) return;
             const $targetCard = e.target.closest('.card');
-            $targetCard?.classList.remove('card-hover');
+            $targetCard ? .classList.remove('card-hover');
 
-            const $delBtn = e.target.closest('.card-wrapper')?.querySelector('.del-btn');
+            const $delBtn = e.target.closest('.card-wrapper') ? .querySelector('.del-btn');
             $delBtn.style.opacity = '0';
         }
 
-        
+
 
         $cardContainer.onmouseover = e => {
 
             if (!e.target.matches('.card-container *')) return;
 
             const $targetCard = e.target.closest('.card');
-            $targetCard?.classList.add('card-hover');
+            $targetCard ? .classList.add('card-hover');
 
-            const $delBtn = e.target.closest('.card-wrapper')?.querySelector('.del-btn');
+            const $delBtn = e.target.closest('.card-wrapper') ? .querySelector('.del-btn');
             $delBtn.style.opacity = '1';
         }
 
@@ -162,7 +162,7 @@
             if (e.target.matches('.card-container .card-btn-group *')) return;
 
             const $targetCard = e.target.closest('.card-wrapper');
-            $targetCard?.setAttribute('id', 'card-down');
+            $targetCard ? .setAttribute('id', 'card-down');
         };
 
         $cardContainer.onmouseup = removeDown;
@@ -174,9 +174,6 @@
         document.querySelector('.add-btn').onclick = e => {
             window.location.href = '/board/write';
         };
-
-        
-
     </script>
 
 </body>

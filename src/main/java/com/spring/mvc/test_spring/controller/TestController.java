@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.SQLOutput;
+import java.util.List;
 
 @RequestMapping("/test")
 @Controller
@@ -21,10 +22,12 @@ public class TestController {
     @GetMapping("/list")
     public String showList(Model model){
         System.out.println("/test/list : get");
-        TestBoardListResponseDTO dto=new TestBoardListResponseDTO();
-        testService.findAllList();
-
-        return "/chap05/list";
+        List<TestBoardListResponseDTO> allList = testService.findAllList();
+//        for (TestBoardListResponseDTO testBoardListResponseDTO : allList) {
+//            System.out.println("testBoardListResponseDTO = " + testBoardListResponseDTO);
+//        }
+        model.addAttribute("sList",allList);
+        return "chap05/list";
     }
 
     //
