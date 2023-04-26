@@ -12,11 +12,12 @@ import java.util.Map;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
-@Repository // 스프링 빈 등록 : 객체의 생성의 제어권을 스프링에게 위임
+@Repository("memory") // 스프링 빈 등록 : 객체의 생성의 제어권을 스프링에게 위임
 public class ScoreRepositoryImpl implements ScoreRepository {
 
     // key: 학번, value: 성적정보
     private static final Map<Integer, Score> scoreMap;
+    private Jdbc jdbc;
 
     // 학번에 사용할 일련번호
     private static int sequence;
@@ -73,6 +74,7 @@ public class ScoreRepositoryImpl implements ScoreRepository {
         }
         score.setStuNum(++sequence);
         scoreMap.put(score.getStuNum(), score);
+        jdbc.save(score);
 //        System.out.println(findAll());
         return true;
     }
