@@ -92,9 +92,25 @@ public class ScoreJdbcRepository implements ScoreRepository {
     @Override
     public boolean deleteByStuNum(int stuNum) {
 
+        try (Connection conn = DriverManager.getConnection(url, username, password)) {
+            String sql = "delete from tbl_score where stu_num=?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, stuNum);
+            int i = pstmt.executeUpdate();
+            if (i == 1) {
+                conn.commit();
+                return true;
+            } else {
+                return false;
+            }
 
 
-//
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+
+        }
+
 //        try (Connection conn = DriverManager.getConnection(url, username, password)) {
 //            conn.setAutoCommit(false);
 //            String sql = "delete from tbl_score where stu_num=?";
@@ -117,6 +133,18 @@ public class ScoreJdbcRepository implements ScoreRepository {
 
     @Override
     public Score findByStuNum(int stuNum) {
+
+        try (Connection conn = DriverManager.getConnection(url, username, password)) {
+            String sql = "select * from tbl_score where stu_num=?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, stuNum);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) return new Score(rs);
+
+
+        } catch (Exception e) {
+
+        }
         return null;
     }
 }

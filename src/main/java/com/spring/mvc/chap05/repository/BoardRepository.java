@@ -14,7 +14,6 @@ public interface BoardRepository {
 
     // 게시물 등록
     boolean save(Board board);
-
     // 게시물 삭제
     boolean deleteByNo(int boardNo);
 

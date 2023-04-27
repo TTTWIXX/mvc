@@ -24,9 +24,9 @@ public class TestController {
     public String showList(Model model) {
         System.out.println("/test/list : get");
         List<TestBoardListResponseDTO> allList = testService.findAllList();
-//        for (TestBoardListResponseDTO testBoardListResponseDTO : allList) {
-//            System.out.println("testBoardListResponseDTO = " + testBoardListResponseDTO);
-//        }
+        for (TestBoardListResponseDTO testBoardListResponseDTO : allList) {
+            System.out.println("testBoardListResponseDTO = " + testBoardListResponseDTO);
+        }
         model.addAttribute("bList", allList);
         return "testSpring/list";
     }
@@ -48,7 +48,7 @@ public class TestController {
     }
 
     // 게시글 지우기 기능
-    @GetMapping
+    @GetMapping("/delete")
     public String delete(){
 
         return "redirect:/testSpring/list";

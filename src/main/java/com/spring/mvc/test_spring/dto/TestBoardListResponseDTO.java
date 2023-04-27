@@ -29,6 +29,9 @@ public class TestBoardListResponseDTO {
     }
 
     private String patteredDate(TestBoard testBoard) {
+
+
+
        DateTimeFormatter pattern=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
       return pattern.format(testBoard.getRegDateTime());

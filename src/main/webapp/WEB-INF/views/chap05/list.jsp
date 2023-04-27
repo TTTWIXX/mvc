@@ -89,7 +89,7 @@
         const confirmDelete = document.getElementById('confirmDelete'); // 모달 삭제 확인버튼
         const cancelDelete = document.getElementById('cancelDelete'); // 모달 삭제 취소 버튼
     
-        $cardContainer.addEventListener('click', e => {
+        $cardContainer.addEventListener('click', e => { 
             // 삭제 버튼을 눌렀다면~
             if (e.target.matches('.card-btn-group *')) {
                 console.log('삭제버튼 클릭');
