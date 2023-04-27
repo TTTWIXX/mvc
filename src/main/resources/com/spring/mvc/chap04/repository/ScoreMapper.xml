@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mvc.chap04.repository.ScoreMapper">
+
+
+    <insert id="save">
+        INSERT INTO SCORE VALUES(#{name},#{kor},#{eng},#{math},#{stuNum},#{grade})
+    </insert>
+
+    <delete id="deleteByStuNum">
+        DELETE FROM SCORE WHERE STUNUM=#{stuNum}
+
+    </delete>
+
+    <resultMap id="rm" type="com.spring.mvc.chap04.entity.Score">
+        <result property="stuNum" column="stunum"/>
+
+    </resultMap>
+
+    <select id="findAll" resultMap="rm">
+        SELECT * FROM SCORE
+    </select>
+
+    <select id="findByStuNum" resultMap="rm">
+        SELECT * FROM SCORE WHERE STUNUM=#{stuNum}
+    </select>
+
+
+</mapper>

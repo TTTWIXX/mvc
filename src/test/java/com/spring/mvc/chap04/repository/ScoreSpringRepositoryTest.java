@@ -17,6 +17,12 @@ class ScoreSpringRepositoryTest {
 
 
     }
+    @Test
+    void removeTest(){
+        int stuNum=1;
+        scoreSpringRepository.deleteByStuNum(stuNum);
+
+    }
 
 
 }
