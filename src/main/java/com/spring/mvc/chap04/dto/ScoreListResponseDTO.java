@@ -2,13 +2,11 @@ package com.spring.mvc.chap04.dto;
 
 import com.spring.mvc.chap04.entity.Grade;
 import com.spring.mvc.chap04.entity.Score;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @RequiredArgsConstructor // final만 골라서 초기화
 @Getter @ToString @EqualsAndHashCode
+
 public class ScoreListResponseDTO {
 
     private final int stuNum;

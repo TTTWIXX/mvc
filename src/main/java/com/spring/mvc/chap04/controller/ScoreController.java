@@ -35,16 +35,16 @@ import java.util.List;
 public class ScoreController {
 
     // 저장소에 의존해야 데이터를 받아서 클라이언트에게 응답할 수 있음
-//    private final ScoreRepository repository;
+    //    private final ScoreRepository repository;
     private final ScoreService scoreService;
 
     // 만약에 클래스의 생성자가 단 1개라면
     // 자동으로 @Autowired를 써줌
 
-//    @Autowired
-//    public ScoreController(ScoreRepository repository) {
-//        this.repository = repository;
-//    }
+    //    @Autowired
+    //    public ScoreController(ScoreRepository repository) {
+    //        this.repository = repository;
+    //    }
 
     // 1. 성적등록화면 띄우기 + 정보목록조회
     @GetMapping("/list")

@@ -92,27 +92,24 @@ public class ScoreJdbcRepository implements ScoreRepository {
     @Override
     public boolean deleteByStuNum(int stuNum) {
 
+        try (Connection conn = DriverManager.getConnection(url, username, password)) {
+            conn.setAutoCommit(false);
+            String sql = "delete from tbl_score where stu_num=?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, stuNum);
+            int i = pstmt.executeUpdate();
+            if (i > 0) {
+                conn.commit();
+                return true;
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
 
 
-//
-//        try (Connection conn = DriverManager.getConnection(url, username, password)) {
-//            conn.setAutoCommit(false);
-//            String sql = "delete from tbl_score where stu_num=?";
-//            PreparedStatement pstmt = conn.prepareStatement(sql);
-//            pstmt.setInt(1, stuNum);
-//            int i = pstmt.executeUpdate();
-//            if (i > 0) {
-//                conn.commit();
-//                return true;
-//            }
-//
-//        } catch (Exception e) {
-//
-//            e.printStackTrace();
-//        }
-//
-//
-//        return false;
+        return false;
     }
 
     @Override
