@@ -2,11 +2,13 @@ package com.spring.mvc.chap04.dto;
 
 import com.spring.mvc.chap04.entity.Grade;
 import com.spring.mvc.chap04.entity.Score;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @RequiredArgsConstructor // final만 골라서 초기화
 @Getter @ToString @EqualsAndHashCode
-
 public class ScoreListResponseDTO {
 
     private final int stuNum;
@@ -16,7 +18,7 @@ public class ScoreListResponseDTO {
 
     public ScoreListResponseDTO(Score s) {
         this.stuNum = s.getStuNum();
-        this.maskingName = makeMaskingName(s.getName());
+        this.maskingName = makeMaskingName(s.getStuName());
         this.average = s.getAverage();
         this.grade = s.getGrade();
     }

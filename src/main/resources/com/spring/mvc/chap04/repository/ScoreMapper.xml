@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--똑같은 경로로 resources에 폴더를 만들고 mapper / namespace에 경로와 파일명을 적어준다.-->
 <mapper namespace="com.spring.mvc.chap04.repository.ScoreMapper">
 
 
@@ -11,7 +12,7 @@
 
     <delete id="deleteByStuNum">
         DELETE FROM SCORE WHERE STUNUM=#{stuNum}
-
+        <!--기본타입 String enum은 그변수를 그대로 넣어주고 객체타입은 객체를 넣어준다.-->
     </delete>
 
     <resultMap id="rm" type="com.spring.mvc.chap04.entity.Score">
@@ -20,11 +21,14 @@
     </resultMap>
 
     <select id="findAll" resultMap="rm">
-        SELECT * FROM SCORE
+        SELECT * FROM tbl_SCORE;
+        <!--sql 이 먼저 만들어진 경우 Entitiy 의 필드명을 sql의 변수명과 맞추면 편하게 작업할수 있다.-->
+
     </select>
 
     <select id="findByStuNum" resultMap="rm">
         SELECT * FROM SCORE WHERE STUNUM=#{stuNum}
+
     </select>
 
 

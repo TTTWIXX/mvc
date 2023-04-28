@@ -16,11 +16,12 @@ import java.util.stream.Collectors;
 @Service
 public class ScoreService {
 
+//    private final ScoreRepository scoreRepository;
     private final ScoreMapper scoreRepository;
 
     @Autowired
-    public ScoreService( ScoreMapper scoreMapper) {
-        this.scoreRepository = scoreMapper;
+    public ScoreService(ScoreMapper scoreRepository) {
+        this.scoreRepository = scoreRepository;
     }
 
     // 목록조회 중간처리
@@ -35,9 +36,9 @@ public class ScoreService {
         // scoreList에서 원하는 정보만 추출하고 이름을 마스킹해서
         // 다시 DTO리스트로 변환해줘야 한다.
         return scoreRepository.findAll(sort)
-                .stream()
-                .map(ScoreListResponseDTO::new)
-                .collect(Collectors.toList());
+                    .stream()
+                    .map(ScoreListResponseDTO::new)
+                    .collect(Collectors.toList());
 
     }
 
