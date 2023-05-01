@@ -6,7 +6,7 @@
 <mapper namespace="com.spring.mvc.mybatis.PersonMapper">
 
 <!--  SQL 작성: 추상메서드 별로 작성  -->
-<!--    id에는 추상메서드 이름을 적습니다. -->
+<!--  id 에는 추상메서드 이름을 적습니다. -->
     <insert id="save">
         INSERT INTO person
             (person_name, person_age)

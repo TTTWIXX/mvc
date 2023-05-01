@@ -44,7 +44,10 @@ public class ScoreRepositoryImpl implements ScoreRepository {
                 .sorted(comparing(Score::getStuNum))
                 .collect(toList())
                 ;
+
     }
+
+
 
     @Override
     public List<Score> findAll(String sort) {

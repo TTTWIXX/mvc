@@ -19,7 +19,7 @@ public class TestService {
 
     public List<TestBoardListResponseDTO> findAllList() {
         return testRepository.findAll().stream()
-                .map(d -> new TestBoardListResponseDTO(d))
+                .map(TestBoardListResponseDTO::new)
                 .collect(Collectors.toList());
     }
 

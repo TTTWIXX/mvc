@@ -40,6 +40,8 @@ public class ScoreService {
                     .map(ScoreListResponseDTO::new)
                     .collect(Collectors.toList());
 
+
+
     }
 
 
@@ -50,6 +52,7 @@ public class ScoreService {
     public boolean insertScore(ScoreRequestDTO dto) {
         // dto(ScoreDTO)를 entity(Score)로 변환해야 함.
         // save명령
+
         return scoreRepository.save(new Score(dto));
     }
 

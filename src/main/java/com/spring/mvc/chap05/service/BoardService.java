@@ -4,12 +4,14 @@ import com.spring.mvc.chap05.dto.BoardDetailResponseDTO;
 import com.spring.mvc.chap05.dto.BoardListResponseDTO;
 import com.spring.mvc.chap05.dto.BoardUpdateRequestDTO;
 import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
+import com.spring.mvc.chap05.dto.page.Page;
 import com.spring.mvc.chap05.entity.Board;
 import com.spring.mvc.chap05.repository.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -20,9 +22,9 @@ public class BoardService {
 
     // 중간처리 기능 자유롭게 사용
     // 목록 중간처리
-    public List<BoardListResponseDTO> getList() {
+    public List<BoardListResponseDTO> getList(Page page) {
 
-        return boardRepository.findAll()
+        return boardRepository.findAll(page)
                 .stream()
                 .map(BoardListResponseDTO::new)
                 .collect(toList())
@@ -49,7 +51,12 @@ public class BoardService {
     }
 
     //  수정 처리
-    public boolean update(BoardUpdateRequestDTO dto){
+    public boolean update(BoardUpdateRequestDTO dto) {
         return boardRepository.update(new Board(dto));
+    }
+
+    public int getCount() {
+
+        return boardRepository.count();
     }
 }

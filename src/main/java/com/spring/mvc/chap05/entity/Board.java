@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 public class Board {
 
     private int boardNo; // 게시글 번호
@@ -39,4 +39,8 @@ public class Board {
         this.title = dto.getTitle();
         this.content = dto.getContent();
     }
+
+
+
+
 }

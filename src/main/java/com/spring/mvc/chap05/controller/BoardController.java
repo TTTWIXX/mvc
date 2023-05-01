@@ -4,8 +4,11 @@ import com.spring.mvc.chap05.dto.BoardDetailResponseDTO;
 import com.spring.mvc.chap05.dto.BoardListResponseDTO;
 import com.spring.mvc.chap05.dto.BoardUpdateRequestDTO;
 import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
+import com.spring.mvc.chap05.dto.page.Page;
+import com.spring.mvc.chap05.dto.page.PageMaker;
 import com.spring.mvc.chap05.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,17 +20,23 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/board")
+@Slf4j
 public class BoardController {
 
     private final BoardService boardService;
 
     // 목록 조회 요청
     @GetMapping("/list")
-    public String list(Model model) {
-        System.out.println("/board/list : GET");
+    public String list(Model model, Page page) {
+        log.info("/board/list : GET");
+        log.info("PAGE : {} ", page);
         List<BoardListResponseDTO> responseDTOS
-                = boardService.getList();
+                = boardService.getList(page);
         model.addAttribute("bList", responseDTOS);
+        // 페이징 알고리즘 작동
+        PageMaker pageMaker = new PageMaker(page, boardService.getCount());
+        model.addAttribute("maker", pageMaker);
+
         return "chap05/list";
     }
 
@@ -67,17 +76,17 @@ public class BoardController {
     public String update(int bno, Model model) {
         System.out.println("/board/update : GET");
         // 기존에 입력한 정보 보내주기
-        BoardDetailResponseDTO detail = boardService.getDetail(bno);
         model.addAttribute("b", boardService.getDetail(bno));
-        System.out.println(detail.getBoardNo());
         return "chap05/update";
 
     }
+
     // 수정 정보 처리 요청
     @PostMapping("/showUpdate")
     public String showUpdate(BoardUpdateRequestDTO dto) {
         boardService.update(dto);
         return "redirect:/board/list";
     }
+
 
 }
