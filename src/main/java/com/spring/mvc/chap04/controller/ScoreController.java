@@ -31,7 +31,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/score")
 //@AllArgsConstructor : 모든 필드를 초기화하는 생성자
-@RequiredArgsConstructor // : final필드만 초기화하는 생성자
+@RequiredArgsConstructor // : final 필드만 초기화하는 생성자
 public class ScoreController {
 
     // 저장소에 의존해야 데이터를 받아서 클라이언트에게 응답할 수 있음

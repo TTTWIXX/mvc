@@ -35,7 +35,6 @@ public class ControllerV2 {
     // == 2. modelAndView 사용하기
     // /model/hobbies2 : GET
     // hobbies.jsp를 포워딩
-
     // ModelAndView 리턴 타입을 ModelAndView로 설정
     @GetMapping("/hobbies2")
     public ModelAndView hobbies2() {

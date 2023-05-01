@@ -92,6 +92,7 @@ public class ControllerV1 {
     // ==> /spring/member/hong/107
     //      hong 이라는 유저의 107번 게시글을 읽고싶음
     @RequestMapping("/member/{userName}/{bNo}")
+
     public String member(
             @PathVariable String userName,
             @PathVariable long bNo

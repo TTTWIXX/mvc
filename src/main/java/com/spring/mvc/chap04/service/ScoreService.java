@@ -20,6 +20,7 @@ public class ScoreService {
 
     @Autowired
     public ScoreService( ScoreMapper scoreMapper) {
+
         this.scoreRepository = scoreMapper;
     }
 

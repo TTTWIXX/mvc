@@ -17,6 +17,28 @@ public class Employee {
     // 빌더 패턴 구현
 
     // 1. 내부 클래스를 외부와 같은 스펙으로 만듬
+
+    public static class Embuilder{
+
+        private int empId; // 사번
+        private String empName; // 사원명
+        private String position; // 직급
+        private LocalDate hireDate; // 입사일자
+
+        public Embuilder() {
+        }
+
+        public Embuilder(int empId) {
+            this.empId = empId;
+        }
+    }
+
+
+
+
+
+
+
     public static class EmployeeBuilder {
         private int empId; // 사번
         private String empName; // 사원명
