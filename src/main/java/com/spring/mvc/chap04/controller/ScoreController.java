@@ -35,21 +35,21 @@ import java.util.List;
 public class ScoreController {
 
     // 저장소에 의존해야 데이터를 받아서 클라이언트에게 응답할 수 있음
-    //    private final ScoreRepository repository;
+//    private final ScoreRepository repository;
     private final ScoreService scoreService;
 
     // 만약에 클래스의 생성자가 단 1개라면
     // 자동으로 @Autowired를 써줌
 
-    //    @Autowired
-    //    public ScoreController(ScoreRepository repository) {
-    //        this.repository = repository;
-    //    }
+//    @Autowired
+//    public ScoreController(ScoreRepository repository) {
+//        this.repository = repository;
+//    }
 
     // 1. 성적등록화면 띄우기 + 정보목록조회
     @GetMapping("/list")
     public String list(Model model,
-                       @RequestParam(defaultValue = "num") String sort) {
+                      @RequestParam(defaultValue = "num") String sort) {
         System.out.println("/score/list : GET!");
         System.out.println("정렬 요구사항: " + sort);
 
@@ -86,15 +86,15 @@ public class ScoreController {
          */
         return "redirect:/score/list";
     }
-    // 3. 성적정보 삭제 요청
-    @GetMapping("/remove")
-    public String remove(int stuNum) {
-        System.out.println("/score/remove : GET!");
-
-        scoreService.delete(stuNum);
-
-        return "redirect:/score/list";
-    }
+//    // 3. 성적정보 삭제 요청
+//    @GetMapping("/remove")
+//    public String remove(int stuNum) {
+//        System.out.println("/score/remove : GET!");
+//
+//        scoreService.delete(stuNum);
+//
+//        return "redirect:/score/list";
+//    }
     // 4. 성적정보 상세 조회 요청
     @GetMapping("/detail")
     public String detail(int stuNum, Model model) {
@@ -105,29 +105,29 @@ public class ScoreController {
 
 
     // 5. 수정 화면 열어주기
-    @GetMapping("/modify")
-    public String modify(int stuNum, Model model) {
-        System.out.println("/score/modify : GET!");
-        retrieve(stuNum, model);
-        return "chap04/score-modify";
-    }
-
+//    @GetMapping("/modify")
+//    public String modify(int stuNum, Model model) {
+//        System.out.println("/score/modify : GET!");
+//        retrieve(stuNum, model);
+//        return "chap04/score-modify";
+//    }
+//
     private void retrieve(int stuNum, Model model) {
         Score score = scoreService.retrieve(stuNum);
         model.addAttribute("s", score);
     }
-
-    // 6. 수정 완료 처리하기
-    @PostMapping("/modify")
-    public String modify(int stuNum, ScoreRequestDTO dto) {
-        System.out.println("/score/modify : POST!");
-
-        Score score = scoreService.retrieve(stuNum);
-        score.changeScore(dto);
-
-        return "redirect:/score/detail?stuNum=" + stuNum; // 상세보기페이지로 리다이렉트
-    }
-
+//
+//    // 6. 수정 완료 처리하기
+//    @PostMapping("/modify")
+//    public String modify(int stuNum, ScoreRequestDTO dto) {
+//        System.out.println("/score/modify : POST!");
+//
+//        Score score = scoreService.retrieve(stuNum);
+//        score.changeScore(dto);
+//
+//        return "redirect:/score/detail?stuNum=" + stuNum; // 상세보기페이지로 리다이렉트
+//    }
+//
 
 
 }

@@ -51,6 +51,7 @@ public class TestController {
     @GetMapping("/delete")
     public String delete(){
 
+
         return "redirect:/testSpring/list";
     }
 

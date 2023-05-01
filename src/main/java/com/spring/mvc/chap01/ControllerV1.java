@@ -2,7 +2,6 @@ package com.spring.mvc.chap01;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 
 // 어떤 요청들을 처리할지 공통 URL을 설계

@@ -1,14 +1,18 @@
 package com.spring.mvc.chap05.entity;
 
+import com.spring.mvc.chap05.dto.BoardUpdateRequestDTO;
 import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Setter @Getter
-@ToString @EqualsAndHashCode
+@Setter
+@Getter
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Board {
 
     private int boardNo; // 게시글 번호
@@ -29,4 +33,14 @@ public class Board {
         this.content = dto.getContent();
         this.regDateTime = LocalDateTime.now();
     }
+
+    public Board(BoardUpdateRequestDTO dto) {
+        this.boardNo = dto.getBoardNo();
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+    }
+
+
+
+
 }

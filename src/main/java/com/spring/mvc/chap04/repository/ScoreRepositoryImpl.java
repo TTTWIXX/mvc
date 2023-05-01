@@ -17,7 +17,7 @@ public class ScoreRepositoryImpl implements ScoreRepository {
 
     // key: 학번, value: 성적정보
     private static final Map<Integer, Score> scoreMap;
-    private Jdbc jdbc;
+
 
     // 학번에 사용할 일련번호
     private static int sequence;
@@ -44,7 +44,10 @@ public class ScoreRepositoryImpl implements ScoreRepository {
                 .sorted(comparing(Score::getStuNum))
                 .collect(toList())
                 ;
+
     }
+
+
 
     @Override
     public List<Score> findAll(String sort) {
@@ -54,7 +57,7 @@ public class ScoreRepositoryImpl implements ScoreRepository {
                 comparator = comparing(Score::getStuNum);
                 break;
             case "name":
-                comparator = comparing(Score::getName);
+                comparator = comparing(Score::getStuName);
                 break;
             case "avg":
                 comparator = comparing(Score::getAverage).reversed();
@@ -74,7 +77,7 @@ public class ScoreRepositoryImpl implements ScoreRepository {
         }
         score.setStuNum(++sequence);
         scoreMap.put(score.getStuNum(), score);
-        jdbc.save(score);
+
 //        System.out.println(findAll());
         return true;
     }
