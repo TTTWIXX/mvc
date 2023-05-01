@@ -76,7 +76,9 @@
             <nav aria-label="Page navigation example">
      
                 <ul class="pagination pagination-lg pagination-custom">
+                    <c:if test="${maker.page.pageNo != 1}">
                     <a id="firstPage" href="/board/list?pageNo=1">&lt;&lt;</a>
+                </c:if>
                     <c:if test="${maker.prev}">
                         <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.begin-1}">prev</a></li>
                     </c:if>
@@ -90,7 +92,9 @@
 
 
                     <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.end+1}">next</a></li>
+                    <c:if test="${maker.page.pageNo != maker.realEnd}">
                     <a id="endPage" href="/board/list?pageNo=${maker.realEnd}">&gt;&gt;</a>
+                   </c:if>
                 </ul>
            
             </nav>
