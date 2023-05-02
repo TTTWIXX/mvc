@@ -98,10 +98,6 @@
         button.list-btn {
             background: #e61e8c;
         }
-        button.update-btn{
-            background: #0bb9a5;
-
-        }
         button:hover {
             background-color: #3d8b40;
         }
@@ -119,11 +115,9 @@
         <label for="content">내용</label>
         <div id="content">${b.content}</div>
         <div class="buttons">
-            <button class="update-btn" type="button" onclick="window.location.href='/board/update/?bno=${b.boardNo}'">수정</button>
-            <button class="list-btn" type="button" onclick="window.location.href='/board/list'">목록</button>
+            <button class="list-btn" type="button" onclick="window.location.href='/board/list?type=${s.type}&keyword=${s.keyword}&pageNo=${s.pageNo}'">목록</button>
         </div>
         
     </div>
 </body>
 </html>
-

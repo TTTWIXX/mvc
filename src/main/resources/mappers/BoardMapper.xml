@@ -6,24 +6,34 @@
 
     <select id="findAll" resultType="board">
         SELECT
-        board_no, title,
-        content, view_count, reg_date_time
+            board_no, title,
+            content, view_count, reg_date_time
         FROM tbl_board
+        <if test="type == 'title'">
+            WHERE title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            WHERE content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'tc'">
+            WHERE title LIKE CONCAT('%', #{keyword}, '%')
+                OR content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
         ORDER BY board_no DESC
         LIMIT #{pageStart}, #{amount}
     </select>
 
     <select id="findOne" resultType="board">
         SELECT
-        board_no, title,
-        content, view_count, reg_date_time
+            board_no, title,
+            content, view_count, reg_date_time
         FROM tbl_board
         WHERE board_no = #{boardNo}
     </select>
 
     <insert id="save">
         INSERT INTO tbl_board
-        (title, content)
+            (title, content)
         VALUES (#{title}, #{content})
     </insert>
 
@@ -34,19 +44,23 @@
 
     <update id="upViewCount">
         update tbl_board
-        set view_count=view_count +1
-        where board_no=#{boardNo}
-    </update>
-
-    <update id="update">
-        update tbl_board
-        set title=#{title}, content=#{content}
-        where board_no=#{boardNo}
+        set view_count = view_count + 1
+        where board_no = #{boardNo};
     </update>
 
     <select id="count" resultType="int">
-        select count(*) from tbl_board
+        SELECT COUNT(*)
+        FROM tbl_board
+        <if test="type == 'title'">
+            WHERE title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            WHERE content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'tc'">
+            WHERE title LIKE CONCAT('%', #{keyword}, '%')
+            OR content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
     </select>
-
 
 </mapper>
