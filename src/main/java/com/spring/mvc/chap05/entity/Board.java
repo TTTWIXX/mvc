@@ -1,15 +1,22 @@
 package com.spring.mvc.chap05.entity;
 
-import com.spring.mvc.chap05.dto.BoardUpdateRequestDTO;
 import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Setter
-@Getter
-@ToString
-@EqualsAndHashCode
+/*
+create table tbl_board (
+	board_no int(10) auto_increment primary key,
+	title VARCHAR(80) not null,
+	content VARCHAR(2000),
+	view_count int(10) default 0,
+	reg_date_time DATETIME default current_timestamp
+);
+ */
+
+@Setter @Getter
+@ToString @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -33,14 +40,4 @@ public class Board {
         this.content = dto.getContent();
         this.regDateTime = LocalDateTime.now();
     }
-
-    public Board(BoardUpdateRequestDTO dto) {
-        this.boardNo = dto.getBoardNo();
-        this.title = dto.getTitle();
-        this.content = dto.getContent();
-    }
-
-
-
-
 }

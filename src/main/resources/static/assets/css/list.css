@@ -254,3 +254,27 @@
     height: 50px;
     text-decoration: none;
 }
+/* 검색창 */
+.search{
+    margin-bottom: 2em;
+}
+.top-section {
+    display: flex;
+    justify-content: space-between;
+}
+.top-section .search {
+    flex: 4;
+}
+.top-section .amount {
+    flex: 4;
+}
+.top-section .search form {
+    display: flex;
+}
+.top-section .search form #search-type {
+    flex: 1;
+    margin-right: 10px;
+}
+.top-section .search form input[name=keyword] {
+    flex: 3;
+}
