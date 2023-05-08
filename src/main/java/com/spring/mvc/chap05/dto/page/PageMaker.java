@@ -6,6 +6,8 @@ import lombok.ToString;
 @Getter @ToString
 public class PageMaker {
 
+
+
     // 한번에 그려낼 페이지 수
     // 1 ~ 5, 6 ~ 10
     // 1 ~ 10, 11 ~ 20

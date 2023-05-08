@@ -27,8 +27,8 @@ public class BoardController {
     // 목록 조회 요청
     @GetMapping("/list")
     public String list(Search page, Model model) {
-        log.info("/board/list : GET");
-        log.info("page : {}", page);
+//        log.info("/board/list : GET");
+//        log.info("page : {}", page);
         List<BoardListResponseDTO> responseDTOS
                 = boardService.getList(page);
 

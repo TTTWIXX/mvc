@@ -42,6 +42,6 @@ public class Page {
             pageNo : 3 ->  return 12
             pageNo : n ->  return (n - 1) * 6
          */
-        return (pageNo - 1) * amount;
+        return (pageNo - 1) * amount;   
     }
 }

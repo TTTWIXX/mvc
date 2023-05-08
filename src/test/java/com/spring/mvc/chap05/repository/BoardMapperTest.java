@@ -17,7 +17,7 @@ class BoardMapperTest {
         // given
         for (int i = 1; i <= 300; i++) {
             Board b = Board.builder().title("테스트제목" + i).content("테스트내용" + i).build();
-//            mapper.save(b);
+            mapper.save(b);
         }
 
 
