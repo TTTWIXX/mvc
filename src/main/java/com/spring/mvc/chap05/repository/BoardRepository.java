@@ -5,7 +5,7 @@ import com.spring.mvc.chap05.entity.Board;
 import java.util.List;
 
 public interface BoardRepository {
-
+    // return을 entity와 해야한다.
     // 게시물 목록 조회
     List<Board> findAll();
 

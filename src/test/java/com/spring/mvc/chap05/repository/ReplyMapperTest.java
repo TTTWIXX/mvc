@@ -140,5 +140,19 @@ class ReplyMapperTest {
 
     }
 
+//    @Test
+//    void bulkReplyInsert(){
+//
+//        for (int i = 0; i < 300; i++) {
+//            Reply re = Reply.builder()
+//                    .boardNo(3L)
+//                    .replyText("페이지 댓글내용" + i)
+//                    .replyWriter("토키")
+//                    .build();
+//            replyMapper.save(re);
+//        }
+//
+//    }
+
 
 }
