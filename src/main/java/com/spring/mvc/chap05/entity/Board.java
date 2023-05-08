@@ -21,7 +21,7 @@ create table tbl_board (
 @AllArgsConstructor
 @Builder
 public class Board {
-
+    // 데이터 베이스 column명과 맞춰야한다.
     private int boardNo; // 게시글 번호
     private String title; // 제목
     private String content; // 내용
