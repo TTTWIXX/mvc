@@ -1,4 +1,4 @@
-package com.spring.mvc.chap05.dto;
+package com.spring.mvc.chap05.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.mvc.chap05.entity.Reply;
@@ -17,6 +17,7 @@ public class ReplyDetailResponseDTO {
     private long rno;
     private String text;
     private String writer;
+
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime regDate;
 

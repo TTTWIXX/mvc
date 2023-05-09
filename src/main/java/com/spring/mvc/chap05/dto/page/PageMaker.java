@@ -24,7 +24,6 @@ public class PageMaker {
     private int totalCount;
 
 
-
     public PageMaker(Page page, int totalCount) {
         this.page = page;
         this.totalCount = totalCount;
@@ -33,8 +32,6 @@ public class PageMaker {
 
     // 페이지 계산 알고리즘
     private void makePageInfo() {
-
-
 
         // 1. end값 계산
         // 올림처리 (현재 위치한 페이지번호 / 한 화면에 배치할 페이지수 ) *  한 화면에 배치할 페이지 수

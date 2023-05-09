@@ -1,9 +1,10 @@
 package com.spring.mvc.chap05.controller;
 
-import com.spring.mvc.chap05.dto.BoardListResponseDTO;
-import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
+
 import com.spring.mvc.chap05.dto.page.PageMaker;
 import com.spring.mvc.chap05.dto.page.Search;
+import com.spring.mvc.chap05.dto.request.BoardWriteRequestDTO;
+import com.spring.mvc.chap05.dto.response.BoardListResponseDTO;
 import com.spring.mvc.chap05.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
