@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +11,8 @@
 
     <%@ include file="../include/static-head.jsp" %>
 
-    
+
     <style>
-        
-        
         .form-container {
             width: 500px;
             margin: auto;
@@ -23,6 +22,7 @@
             border-radius: 4px;
             font-size: 18px;
         }
+
         .form-container h1 {
             font-size: 40px;
             font-weight: 700;
@@ -31,18 +31,21 @@
             margin-bottom: 20px;
             color: #ffffff;
         }
+
         .form-container h2 {
             font-size: 30px;
             color: #222;
             text-align: center;
             margin-bottom: 20px;
         }
+
         label {
             display: block;
             margin-bottom: 5px;
             font-size: 20px;
         }
-        #title{
+
+        #title {
             font-size: 18px;
             width: 100%;
             padding: 8px;
@@ -52,6 +55,7 @@
             margin-bottom: 10px;
             background-color: rgba(255, 255, 255, 0.8);
         }
+
         #content {
             height: 400px;
             font-size: 18px;
@@ -68,11 +72,13 @@
             resize: none;
             height: 200px;
         }
+
         .buttons {
             display: flex;
             justify-content: flex-end;
             margin-top: 20px;
         }
+
         button {
             font-size: 20px;
             padding: 10px 20px;
@@ -85,19 +91,23 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s;
         }
+
         button.list-btn {
             background: #e61e8c;
         }
+
         button:hover {
             background-color: #3d8b40;
         }
+
         button.list-btn:hover {
             background: #e61e8c93;
         }
     </style>
 </head>
+
 <body>
-    
+
     <%@ include file="../include/header.jsp" %>
 
     <div id="wrap" class="form-container">
@@ -129,11 +139,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="newReplyWriter" hidden>댓글 작성자</label>
-                                    <input id="newReplyWriter" name="replyWriter" type="text"
-                                        class="form-control" placeholder="작성자 이름"
-                                        style="margin-bottom: 6px;">
-                                    <button id="replyAddBtn" type="button"
-                                        class="btn btn-dark form-control">등록</button>
+                                    <input id="newReplyWriter" name="replyWriter" type="text" class="form-control"
+                                        placeholder="작성자 이름" style="margin-bottom: 6px;">
+                                    <button id="replyAddBtn" type="button" class="btn btn-dark form-control">등록</button>
                                 </div>
                             </div>
                         </div>
@@ -198,49 +206,139 @@
         </div>
 
         <!-- end replyModifyModal -->
-        
+
     </div>
     <script>
-
         // 댓글 관련 스크립트
         // 원본 글 번호
-        const bno='${b.boardNo}';
+        const bno = '${b.boardNo}';
 
         //댓글 요청 URI
         const URL = '/api/v1/replies';
 
         // 댓글 목록 렌더링 함수
         function renderReplyList({
-            count,pageInfo, replies
-        }){
+            count,
+            pageInfo,
+            replies
+        }) {
 
             // 총 댓글 수 렌더링
-            document.getElementById('replyCnt').textContent=count;
+            document.getElementById('replyCnt').textContent = count;
+
+        }
+        // 댓글 내용 렌더링
+        // 각 댓글 하나의 태그
+        // 각 댓글 하나의 태그
+        let tag = '';
+
+        if (replies === null || replies.length === 0) {
+            tag += "<div id='replyContent' class='card-body'>댓글이 아직 없습니다! ㅠㅠ</div>";
+
+        } else {
+            for (let rep of replies) {
+
+                const {
+                    rno,
+                    writer,
+                    text,
+                    regDate
+                } = rep;
+
+                tag += "<div id='replyContent' class='card-body' data-replyId='" + rno + "'>" +
+                    "    <div class='row user-block'>" +
+                    "       <span class='col-md-3'>" +
+                    "         <b>" + Writer + "</b>" +
+                    "       </span>" +
+                    "       <span class='offset-md-6 col-md-3 text-right'><b>" + formatDate(rep.replyDate) +
+                    "</b></span>" +
+                    "    </div><br>" +
+                    "    <div class='row'>" +
+                    "       <div class='col-md-6'>" + text + "</div>" +
+                    "       <div class='offset-md-2 col-md-4 text-right'>";
+
+                // if (currentAccount === rep.account || auth === 'ADMIN') {
+                tag +=
+                    "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
+                    "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
+                // }
+                tag += "       </div>" +
+                    "    </div>" +
+                    " </div>";
+            }
+            // 생성된 댓글 tag 렌더링
+            document.getElementById('replyData').innerHTML = tag;
+
+        }// 댓글 목록 렌더링 함수
+        function renderReplyList({
+            count, pageInfo, replies
+         }) {
+
+            // 총 댓글 수 렌더링
+            document.getElementById('replyCnt').textContent = count;
+
+            // 댓글 내용 렌더링
+            // 각 댓글 하나의 태그
+            let tag = '';
+
+            if (replies === null || replies.length === 0) {
+                tag += "<div id='replyContent' class='card-body'>댓글이 아직 없습니다! ㅠㅠ</div>";
+
+            } else {
+                for (let rep of replies) {
+
+                    const {rno, writer, text, regDate} = rep;
+
+                    tag += "<div id='replyContent' class='card-body' data-replyId='" + rno + "'>" +
+                        "    <div class='row user-block'>" +
+                        "       <span class='col-md-3'>" +
+                        "         <b>" + writer + "</b>" +
+                        "       </span>" +
+                        "       <span class='offset-md-6 col-md-3 text-right'><b>" + regDate +
+                        "</b></span>" +
+                        "    </div><br>" +
+                        "    <div class='row'>" +
+                        "       <div class='col-md-6'>" + text + "</div>" +
+                        "       <div et-md-2 col-md-4 text-right'>";
+
+                    // if (currentAccount === rep.account || auth === 'ADMIN') {
+                        tag +=
+                            "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
+                            "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
+                    // }
+                    tag += "       </div>" +
+                        "    </div>" +
+                        " </div>";
+                }
+            }
+
+
+            // 생성된 댓글 tag 렌더링
+            document.getElementById('replyData').innerHTML = tag;
 
         }
 
 
 
         // 댓글 목록 불러오기 함수
-        function getReplyList(page=1){
+        function getReplyList(page = 1) {
             fetch(`\${URL}/\${bno}/page/\${page}`)
-            .then(res=>res.json())
-            .then(responseResult=>{
-                console.log(responseResult);
-            });
+                .then(res => res.json())
+                .then(responseResult => {
+                    console.log(responseResult);
+                });
 
 
         }
 
         // 메인 실행부
-        (function(){
+        (function () {
 
             // 첫 댓글 페이지 불러오기
             getReplyList();
         })();
-
-
     </script>
 
 </body>
+
 </html>

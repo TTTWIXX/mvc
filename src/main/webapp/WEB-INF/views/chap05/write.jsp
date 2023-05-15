@@ -81,6 +81,7 @@
     </style>
 </head>
 <body>
+    
     <div id="wrap" class="form-container">
         <h1>꾸러기 게시판 글쓰기</h1>
         <form action="/board/write" method="post">

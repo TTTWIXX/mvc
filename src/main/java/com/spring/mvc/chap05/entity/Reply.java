@@ -27,7 +27,7 @@ create table tbl_reply (
 @NoArgsConstructor
 @Builder
 public class Reply {
-    // 데이터 베이스 column명과 맞춰야한다.
+    // 데이터 베이스 column명과 맞춰야한다.T
     private long replyNo;
     private String replyText;
     private String replyWriter;

@@ -46,7 +46,7 @@
                 </form>
             </div>
         </div>
-
+       <!-- end card container -->
         <div class="card-container">
 
             <c:forEach var="b" items="${bList}">
@@ -80,7 +80,8 @@
 
 
         </div>
-        <!-- end card container -->
+
+ 
 
         <!-- 게시글 목록 하단 영역 -->
         <div class="bottom-section">
