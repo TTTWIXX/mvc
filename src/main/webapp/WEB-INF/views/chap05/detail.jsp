@@ -126,6 +126,8 @@
     <div id="wrap" class="form-container">
         <h1>${b.boardNo}번 게시물 내용~ </h1>
         <h2># 작성일자: ${b.date}</h2>
+        <label for="wirter">작성자</label>
+        <input type="text" id="title" name="writer" value="${b.writer}" readonly>
         <label for="title">제목</label>
         <input type="text" id="title" name="title" value="${b.title}" readonly>
         <label for="content">내용</label>
@@ -160,7 +162,8 @@
                             </div>
                         </div>
                     </div>
-                </div> <!-- end reply write -->
+                </div>
+                 <!-- end reply write -->
 
                 <!--댓글 내용 영역-->
                 <div class="card">

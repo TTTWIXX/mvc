@@ -22,7 +22,9 @@
 
         <div class="main-title-wrapper">
             <h1 class="main-title">꾸러기 게시판</h1>
-            <button class="add-btn">새 글 쓰기</button>
+            <c:if test="${login!=null}">
+                <button class="add-btn">새 글 쓰기</button>
+            </c:if>
         </div>
 
         <div class="top-section">
@@ -37,7 +39,7 @@
                         <option value="tc">제목+내용</option>
                     </select>
 
-                    <input type="text" class="form-control" name="keyword" value="${s.keyword}">
+                    <input type="text" class="form-control" name="boardKeyWord" value="${s.keyword}">
 
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search"></i>

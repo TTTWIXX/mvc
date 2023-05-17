@@ -78,7 +78,7 @@ public class ReplyController {
 
 
     // 댓글 삭제 요청
-    @DeleteMapping("/{replyNo}")
+    @DeleteMapping
     public ResponseEntity<?> remove(
             @PathVariable(required = false) Long replyNo
     ) {

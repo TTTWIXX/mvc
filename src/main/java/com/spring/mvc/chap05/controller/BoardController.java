@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -27,7 +29,30 @@ public class BoardController {
 
     // 목록 조회 요청
     @GetMapping("/list")
-    public String list(Search page, Model model) {
+    public String list(Search page,
+                       Model model,
+                       HttpServletRequest request) {
+
+
+        boolean flag = false;
+        //세션을 확인
+//        Object login
+//                = request.getSession().getAttribute("login");
+//
+//        if (login != null) flag = true;
+
+
+        // 쿠키를 확인
+//        Cookie[] cookies = request.getCookies();
+//        for (Cookie c : cookies) {
+//            if (c.getName().equals("login")) {
+//                flag = true;
+//                break;
+//            }
+//        }
+//        if (!flag) return "redirect:/members/sign-in";
+
+
         log.info("/board/list : GET");
         log.info("page : {}", page);
         List<BoardListResponseDTO> responseDTOS
@@ -38,23 +63,26 @@ public class BoardController {
 
         model.addAttribute("bList", responseDTOS);
         model.addAttribute("maker", maker);
-        model.addAttribute("s",page);
+        model.addAttribute("s", page);
 
         return "chap05/list";
     }
 
     // 글쓰기 화면 조회 요청
     @GetMapping("/write")
-    public String write() {
+    public String write(HttpSession session) {
+//        if(!LoginUtil.isLogin(session)){
+//            return "redirect:/members/sign-in";
+//        }
         System.out.println("/board/write : GET");
         return "chap05/write";
     }
 
     // 글 등록 요청 처리
     @PostMapping("/write")
-    public String write(BoardWriteRequestDTO dto) {
+    public String write(BoardWriteRequestDTO dto,HttpSession session) {
         System.out.println("/board/write : POST");
-        boardService.register(dto);
+        boardService.register(dto,session);
         return "redirect:/board/list";
     }
 
@@ -68,7 +96,7 @@ public class BoardController {
 
     // 글 상세 조회 요청
     @GetMapping("/detail")
-    public String detail(int bno, Model model,@ModelAttribute("s") Search search) {
+    public String detail(int bno, Model model, @ModelAttribute("s") Search search) {
         System.out.println("/board/detail : GET");
         model.addAttribute("b", boardService.getDetail(bno));
 //        model.addAttribute("s",search);
