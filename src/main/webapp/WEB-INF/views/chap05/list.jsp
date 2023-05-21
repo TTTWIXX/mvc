@@ -236,7 +236,7 @@
         function appendPageActive() {
 
             // 현재 내가 보고 있는 페이지 넘버
-            const curPageNum = '${maker.page.pageNo}';
+            const curPageNum = '${maker.page.pageNo}';  
             // console.log("현재페이지: ", curPageNum);
 
             // 페이지 li태그들을 전부 확인해서 
